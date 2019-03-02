@@ -1,0 +1,7 @@
+<mat-nav-list>
+  <a *ngIf="userInfo" mat-list-item routerLink="/dashboard">Dashboard</a>
+  <a *ngIf="userInfo" mat-list-item routerLink="/events">Events</a>
+  <a *ngIf="userInfo && userInfo.isAdmin" mat-list-item routerLink="/users">Users</a>
+  <a *ngIf="!userInfo" mat-list-item routerLink="/login">Sign In</a>
+  <a mat-list-item routerLink="/about-us">About Us</a>
+</mat-nav-list>

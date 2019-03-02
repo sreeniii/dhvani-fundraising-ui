@@ -1,0 +1,67 @@
+<ng-container>
+  <mat-toolbar color="primary" class="header">
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>DhvaniFundraising</span>
+    <div class="flex-spacer"></div>
+    <button *ngIf="userInfo" mat-icon-button [matMenuTriggerFor]="notifications" class="float-right">
+      <mat-icon matBadge="22" matBadgeSize="small" matBadgeColor="warn" matBadgePosition="above after">notifications</mat-icon>
+    </button>
+    <button *ngIf="userInfo" mat-icon-button [matMenuTriggerFor]="appMenu" class="float-right">
+      <mat-icon>person</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer mode="side" 
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      class="sidenav" fixedInViewport="false">
+      <app-menu></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-alert></app-alert>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <mat-menu #appMenu="matMenu">
+    <ng-template matMenuContent>
+      <mat-toolbar>
+        <mat-icon class="profile">account_circle</mat-icon>&nbsp;&nbsp;
+        <span class="profile-name" *ngIf="userInfo">{{userInfo.firstName}} {{userInfo.lastName}}</span>
+      </mat-toolbar>
+      <mat-list>
+        <mat-list-item>
+            <button mat-menu-item routerLink="/profile">Profile</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+  </mat-menu>
+
+  <mat-menu #notifications="matMenu">
+    <ng-template matMenuContent>
+      <div>
+        <mat-toolbar>
+          <span>Notifications</span>
+          <div class="flex-spacer"></div>
+          <button mat-icon-button class="float-right">
+            <mat-icon>clear_all</mat-icon>
+          </button>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <div class="notifications-container">All caught up.</div>
+      </div>
+    </ng-template>
+  </mat-menu>
+
+  <mat-toolbar class="footer">Footer</mat-toolbar>
+</ng-container>
+  
