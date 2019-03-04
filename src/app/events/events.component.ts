@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-events',
@@ -6,13 +10,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  folders = [{name: 'f1', updated: '12:30'}, {name: 'f2', updated: '12:30'}];
-  notes = [{name: 'f1', updated: '12:30'}];
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['name', 'description', 'date', 'actions'];
+  dataSource: MatTableDataSource<Event>;
+  isLoadingResults = true;
 
-  constructor() { }
+  constructor(private eventService: EventService,
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
+    this.loadAllEvents();
+  }
+
+  private loadAllEvents() {
+    this.eventService.getAll().pipe(first()).subscribe(events => {
+      this.dataSource = new MatTableDataSource(events);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.isLoadingResults = false;
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

@@ -34,7 +34,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.profileForm = this.formBuilder.group({
         firstName: ['', Validators.required],
-        lastName: ['', Validators.required]
+        lastName: ['', Validators.required],
+        emailId: ['', [Validators.required, Validators.email]],
+        phoneNumber: ['']
     });
 
     this.subscription = this.route.queryParams.subscribe(params => {

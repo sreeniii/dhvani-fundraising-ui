@@ -1,7 +1,7 @@
 <mat-nav-list>
-  <a *ngIf="userInfo" mat-list-item routerLink="/dashboard">Dashboard</a>
-  <a *ngIf="userInfo" mat-list-item routerLink="/events">Events</a>
-  <a *ngIf="userInfo && userInfo.isAdmin" mat-list-item routerLink="/users">Users</a>
-  <a *ngIf="!userInfo" mat-list-item routerLink="/login">Sign In</a>
-  <a mat-list-item routerLink="/about-us">About Us</a>
+  <a *ngIf="userInfo" mat-list-item routerLink="/dashboard"><fa-icon [icon]="faColumns"></fa-icon>Dashboard</a>
+  <a *ngIf="userInfo" mat-list-item routerLink="/events"><fa-icon [icon]="faCalendarAlt"></fa-icon>Events</a>
+  <a *ngIf="userInfo && userInfo.isAdmin" mat-list-item routerLink="/users"><fa-icon [icon]="faUsers"></fa-icon>Users</a>
+  <a *ngIf="!userInfo" mat-list-item routerLink="/login"><fa-icon [icon]="faSignInAlt"></fa-icon>Sign In</a>
+  <a mat-list-item routerLink="/about-us"><fa-icon [icon]="faInfo"></fa-icon>About Us</a>
 </mat-nav-list>

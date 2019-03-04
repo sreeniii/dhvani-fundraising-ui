@@ -22,6 +22,20 @@
         </tr>
         <tr>
           <td>
+            <mat-form-field class="example-full-width">
+              <input matInput [readonly]="!editMode" placeholder="Email Id" formControlName="emailId" name="emailId" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput [readonly]="!editMode" placeholder="Phone Number" formControlName="phoneNumber" name="phoneNumber">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <mat-card-actions class="example-full-width" *ngIf="editMode">
               <button mat-raised-button type="submit" [disabled]="loading" color="primary">Save</button>
               <a (click)="cancelUpdate()" class="btn btn-link">Cancel</a>

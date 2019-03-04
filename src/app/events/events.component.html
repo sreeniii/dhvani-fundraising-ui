@@ -1,16 +1,53 @@
-<mat-list>
-  <mat-card class="dashboard-card">
-    <mat-card-header>
-      <mat-card-title>
-          Folders
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="dashboard-card-content">
-      <mat-list-item *ngFor="let folder of folders">
-          <mat-icon matListIcon>folder</mat-icon>
-          <h4 matLine>{{folder.name}}</h4>
-          <p matLine class="demo-2"> {{folder.updated}} </p>
-      </mat-list-item>
-    </mat-card-content>
-  </mat-card>
-</mat-list>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Events</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table class="events-table" [dataSource]="dataSource" matSort aria-label="Elements">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Event Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let row">{{row.date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="appMenu" class="float-right">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #appMenu="matMenu">
+              <ng-template matMenuContent>
+                <mat-list>
+                  <mat-list-item>
+                      <button mat-menu-item (click)="editEvent(row)">Edit</button>
+                  </mat-list-item>
+                  <mat-list-item>
+                      <button mat-menu-item (click)="deleteEvent(row)">Delete</button>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+            </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </mat-card-content>
+</mat-card>

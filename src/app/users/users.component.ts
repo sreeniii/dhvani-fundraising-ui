@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['username', 'firstName', 'lastName', 'isAdmin', 'actions'];
+  displayedColumns = ['username', 'firstName', 'lastName', 'emailId', 'phoneNumber', 'isAdmin', 'actions'];
   dataSource: MatTableDataSource<User>;
   isLoadingResults = true;
 
