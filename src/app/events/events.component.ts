@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/m
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { EventService } from '../services/event.service';
+import { Event } from '../models/event';
 
 @Component({
   selector: 'app-events',
@@ -14,7 +15,7 @@ export class EventsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['name', 'description', 'date', 'actions'];
+  displayedColumns = ['name', 'description', 'date', 'target', 'fundsRaised', 'status', 'actions'];
   dataSource: MatTableDataSource<Event>;
   isLoadingResults = true;
 
@@ -41,6 +42,10 @@ export class EventsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getEventDetail(row) {
+    this.router.navigate(['/event-detail/', row.eventId]);
   }
 
 }

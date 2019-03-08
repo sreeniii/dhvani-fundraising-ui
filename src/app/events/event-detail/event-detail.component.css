@@ -1,0 +1,10 @@
+.event-detail-container {
+    margin: 20px;
+}
+  
+.event-detail-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+  

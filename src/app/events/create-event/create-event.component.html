@@ -1,0 +1,50 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Create Event</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form"  [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Event Name" formControlName="name" name="name" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="date" placeholder="Date" formControlName="date" name="date" required>
+              <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+              <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Target" formControlName="target" name="target" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Description" formControlName="description" name="description"></textarea>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-spinner [style.display]="loading ? 'block' : 'none'" class="example-icon"></mat-spinner>
+            <mat-card-actions class="example-full-width">
+              <button mat-raised-button type="submit" [disabled]="loading" color="primary">Save</button>
+              <a routerLink="/events" class="btn btn-link">Cancel</a>
+            </mat-card-actions>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+</mat-card>

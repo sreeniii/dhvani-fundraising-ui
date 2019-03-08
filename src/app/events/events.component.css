@@ -56,3 +56,9 @@ table {
 .mat-column-created {
     max-width: 124px;
 }
+
+a {
+    color: #007bff;
+    background-color: transparent;
+    cursor: pointer;
+}

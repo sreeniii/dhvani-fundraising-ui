@@ -1,0 +1,30 @@
+<div class="event-detail-container">
+  <mat-card class="event-detail-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{event?.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{event?.description}}
+        <div style="margin-top: 5px;">
+          <span style="margin-right: 30px;"><label>Date: </label> <strong>{{event?.date | date}}</strong></span>
+          <span style="margin-right: 30px;"><label>Target: </label> <strong>{{event?.target | currency}}</strong></span>
+          <span><label>Status: </label> <strong>{{event?.status}}</strong></span>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="event-detail-card-content">
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel">
+      </ngx-charts-bar-vertical>
+    </mat-card-content>
+  </mat-card>
+</div>
+  

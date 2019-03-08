@@ -1,0 +1,69 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>New Donation</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form"  [formGroup]="newDonationForm" (ngSubmit)="onSubmit()">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Donor Name" aria-label="Donor Name" [matAutocomplete]="auto" formControlName="donorName" required>
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option (onSelectionChange)="selectDonor($event, donor)" *ngFor="let donor of filteredDonors | async" [value]="donor.name">
+                      <span>{{donor.name}}</span> |
+                      <small>EmailId: {{donor.email}}</small>
+                    </mat-option>
+                  </mat-autocomplete>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email Id" formControlName="donorEmail" name="donorEmail">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Amount" formControlName="amount" name="amount" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Comments" formControlName="comments" name="comments"></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-select placeholder="Donation Type" formControlName="donationTypeCode" required>
+                  <mat-option>-- None --</mat-option>
+                  <mat-option value="option">Option</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-checkbox formControlName="paymentCompleted">Payment Completed</mat-checkbox>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-spinner [style.display]="loading ? 'block' : 'none'" class="example-icon"></mat-spinner>
+              <mat-card-actions class="example-full-width">
+                <button mat-raised-button type="submit" [disabled]="loading" color="primary">Save</button>
+                <a routerLink="/donations" class="btn btn-link">Cancel</a>
+              </mat-card-actions>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+  </mat-card>

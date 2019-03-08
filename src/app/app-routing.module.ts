@@ -8,10 +8,16 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CreateEventComponent } from './events/create-event/create-event.component';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { NewDonationComponent } from './donations/new-donation/new-donation.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]  },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard]  },
+  { path: 'create-event', component: CreateEventComponent, canActivate: [AuthGuard]  },
+  { path: 'event-detail/:eventId', component: EventDetailComponent, canActivate: [AuthGuard]  },
+  { path: 'new-donation', component: NewDonationComponent, canActivate: [AuthGuard]  },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard]  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
