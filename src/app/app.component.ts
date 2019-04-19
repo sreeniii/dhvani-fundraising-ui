@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { User, CurrentUser } from './models/user';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { User, CurrentUser } from './models/user';
 export class AppComponent {
   title = 'DhvaniFundraising';
   userInfo: CurrentUser;
+  faCode = faCode;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

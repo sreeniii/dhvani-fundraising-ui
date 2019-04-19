@@ -6,3 +6,15 @@ export class Donation {
     paymentCompleted: boolean;
     comments: string;
 }
+
+export class AddDonation {
+    eventId: string;
+    donorId: string;
+    donorName: string;
+    donorEmail: string;
+    donorPhone: string;
+    amount: number;
+    comments: string;
+    paymentCompleted: boolean;
+    donationTypeCode: string;
+}

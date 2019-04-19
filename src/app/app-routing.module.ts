@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard]  },
   { path: 'create-event', component: CreateEventComponent, canActivate: [AuthGuard]  },
   { path: 'event-detail/:eventId', component: EventDetailComponent, canActivate: [AuthGuard]  },
-  { path: 'new-donation', component: NewDonationComponent, canActivate: [AuthGuard]  },
+  { path: 'events/:eventId/new-donation', component: NewDonationComponent, canActivate: [AuthGuard]  },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard]  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },

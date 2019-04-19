@@ -21,6 +21,7 @@
 }
   
 .footer {
+    width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -42,4 +43,13 @@
 
 .profile-name {
     font-size: 20px;
+}
+
+.pull-right {
+    text-align: right;
+}
+
+fa-icon {
+  width: 30px;
+  text-align: center;
 }
